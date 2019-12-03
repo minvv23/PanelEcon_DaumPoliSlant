@@ -239,6 +239,8 @@ def hunnae_scraper(start, end, query, press_name) :
     final_df = pd.DataFrame(zip(news_links, query_list, press_list, title_list, 
                                 date_list, category_list, content_list, commentcount_list),
              columns=['url', 'query', 'press', 'title', 'date', 'category', 'content', 'commentcount'])
+    final_df = final_df.dropna(subset=['title']).drop_duplicates(subset=['url', 'title']).reset_index().drop('index', axis=1)
+    final_df['commentcount'] = final_df['commentcount'].astype(int)
     final_df.to_csv(str(start)+'_'+str(end)+'_'+query+'_'+str(press_name)+'.csv')
     
     with open(str(start)+'_'+str(end)+'_'+query+'_'+str(press_name)+'.p', 'wb') as f :
