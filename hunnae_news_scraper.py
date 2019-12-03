@@ -18,15 +18,21 @@ import json
 
 
 def daum_url(start, end, query, press_name, page_num = 1) :
-    press_id_lists = {'경향신문':'16bfGN9mQcFhOx4F5l',
-                  '한겨레':'16CIYSC5zGTVsMKcxM',
-                  '조선일보':'16EeZKAuilXKH5dzIt',
-                  '중앙일보':'16nfco03BTHhdjCcTS',
-                  '동아일보':'16Et2OLVVtHab8gcjE',
-                  '국민일보':'16NwX_ox536G_zyJUF',
-                  '한국일보':'16hsvX4VEJdcIZzt_z',
-                  '한국경제':'16qCuwnoTf8fLmrhD1',
-                  '매일경제':'16jCK_TdtzwnmXfznB'}
+    press_id_lists = {'조선일보':'16EeZKAuilXKH5dzIt',
+                      '중앙일보':'16nfco03BTHhdjCcTS',
+                      '동아일보':'16Et2OLVVtHab8gcjE',
+                      '한겨레':'16CIYSC5zGTVsMKcxM',
+                      '경향신문':'16bfGN9mQcFhOx4F5l',  
+                      '오마이뉴스':'16mkUmVCvNet_4XIaU',
+                      'MBC':'163Xg3uN0lPaowbo7Z',
+                      'KBS':'16AtQ55jBuQPQrZTu_,161mwl4IdH9OKmFREK',
+                      'SBS':'16n90WxDspfA2aJyav',
+                      '연합뉴스':'16ljSsActD7BytYqsO',
+                      'YTN':'16n9hhGGAhNFqu5w8d',
+                      '국민일보':'16NwX_ox536G_zyJUF',
+                      '한국일보':'16hsvX4VEJdcIZzt_z',                      
+                      '한국경제':'16qCuwnoTf8fLmrhD1',
+                      '매일경제':'16jCK_TdtzwnmXfznB'}
     pre_url = "https://search.daum.net/search?w=news&sort=recency&q={query}&cluster=n&s=NS&a=STCF&dc=STC&pg=1&r=1&p={startpage}&rc=1&at=more&sd={startdate}000000&ed={enddate}235959&period=u&cp={pressid}&cpname={pressname}"
     if press_name != None :
         url = pre_url.format(query = urllib.parse.quote(query),
@@ -42,29 +48,6 @@ def daum_url(start, end, query, press_name, page_num = 1) :
                      enddate = end,
                      pressid = '',
                      pressname = '')
-    return(url)
-
-
-# In[3]:
-
-
-def daum_url_pagenum(start, end, query, press_name, page_num) :
-    press_id_lists = {'경향신문':'16bfGN9mQcFhOx4F5l',
-                  '한겨레':'16CIYSC5zGTVsMKcxM',
-                  '조선일보':'16EeZKAuilXKH5dzIt',
-                  '중앙일보':'16nfco03BTHhdjCcTS',
-                  '동아일보':'16Et2OLVVtHab8gcjE',
-                  '국민일보':'16NwX_ox536G_zyJUF',
-                  '한국일보':'16hsvX4VEJdcIZzt_z',
-                  '한국경제':'16qCuwnoTf8fLmrhD1',
-                  '매일경제':'16jCK_TdtzwnmXfznB'}
-    pre_url = "https://search.daum.net/search?w=news&sort=recency&q=%s&cluster=n&s=NS&a=STCF&dc=STC&pg=1&r=1&p=%d&rc=1&at=more&sd=%d000000&ed=%d235959&period=u&cp=%s&cpname=%s"
-    url = pre_url %(urllib.parse.quote(query),
-                    page_num,
-                    start,
-                    end,
-                    press_id_lists[str(press_name)],
-                    urllib.parse.quote(str(press_name)))
     return(url)
 
 
